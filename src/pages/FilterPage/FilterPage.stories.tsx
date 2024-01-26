@@ -25,8 +25,7 @@ const ModalComponent = (args: ISelectProps) => {
 export const FilterElement = ModalComponent.bind({});
 
 FilterElement.args = {
-
-  filterData: [
+  data: [
     ...FakeData
   ],
 };
