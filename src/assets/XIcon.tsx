@@ -1,7 +1,7 @@
 import React from 'react';
 import { ISVGProps } from '../interface/ISVGProps';
 
-const XIcon= ({fill="#FFFFFF", width='10', height='10'}:ISVGProps) => {
+const XIcon= ({fill="#FFFFFF", width='8', height='8'}:ISVGProps) => {
     return (
       
 <svg width={width} height={height} viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@ import { FakeData } from "../../utils/data";
 import ResetIcon from "../../assets/ResetIcon";
 import { handleFilterSelect } from "../../services/filterService/handleFilter";
 
-const Filter = ({data = FakeData}) => {
+const Filter = ({data = FakeData, filter_title='Filter data by'}) => {
     const { toggle, isOpen } = useDisclosure(false)
     const [filterSelected, setFilterSelected] = useState([])
 
@@ -18,17 +18,17 @@ const Filter = ({data = FakeData}) => {
     };
 
     const handleDelete = (element) => {
-        const data = filterSelected.filter((item) => item.title !== element.title || item.value !== element.value)
+        const data = filterSelected.filter((item) => !(item.title === element.title && item.value === element.value && item.index === element.index ))
         setFilterSelected(data)
     }
 
     return (
         <GeneralLayout>
-            <div>
+            <div >
                 <Modal title="Filter" onClick={(element) => handleDelete(element)} filters={filterSelected} icon={<FilterIcon fill={isOpen ? '#fff' : '#1967FF'} />} isOpen={isOpen} onClose={toggle} >
                     <div className="bg-neutral_gray w-[100%]  p-5 my-2 rounded-lg backdrop-blur-md">
                         <div className="flex flex-row mb-4 justify-between items-center">
-                            <p className='text-white  text-lg'>Filter data by</p>
+                            <p className='text-white  text-lg'>{filter_title}</p>
                             <button className="flex items-center gap-2 my-auto" onClick={() => setFilterSelected([])}>
                                 <ResetIcon />
                                 <p className='text-primary text-normal text-sm'>Reset</p>
@@ -36,7 +36,7 @@ const Filter = ({data = FakeData}) => {
                         </div>
                         {
                             data.map(({ title, multi, options }, index) =>
-                                <Accordion selectData={filterSelected} key={index} title={title} multi={multi} options={options} onChange={(element) => handleFilter({ ...element, title, multi })} />
+                                <Accordion selectData={filterSelected} index={index} key={index} title={title} multi={multi} options={options} onChange={(element) => handleFilter({ ...element, title, multi, index })} />
                             )
                         }
                     </div>

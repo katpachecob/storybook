@@ -1,18 +1,21 @@
 export const handleFilterSelect = async (element, filterSelected) => {
-    const isAlreadySelected = await filterSelected.some(item => item.title === element.title);
-    const isAlreadyMultiSelected = await filterSelected.some(item => item.title === element.title && item.value === element.value);
+    console.log(element)
+    const isAlreadySelected = filterSelected.some(item => item.title === element.title && item.index === element.index)
+    const isAlreadyMultiSelected = filterSelected.some(item => item.title === element.title && item.value === element.value && item.index === element.index);
     let updatedData;
+
     if (isAlreadySelected && !element.multi) {
-        updatedData = await filterSelected.map(item =>
-            item.title === element.title ? { title: element.title, value: element.value } : item
+        updatedData = filterSelected.map(item =>
+            item.title === element.title ? { title: element.title, value: element.value, index: element.index } : item
         );
     } else if (isAlreadyMultiSelected) {
-        updatedData = await filterSelected.filter(item =>
-            !(item.title === element.title && item.value === element.value)
+        updatedData = filterSelected.filter(item =>
+            !(item.title === element.title && item.value === element.value && item.index === element.index)
         );
     } else {
-        updatedData = [...filterSelected, { title: element.title, value: element.value }];
+        updatedData = [...filterSelected, { title: element.title, value: element.value, index: element.index }];
     }
 
-    return updatedData
+    return updatedData;
 };
+

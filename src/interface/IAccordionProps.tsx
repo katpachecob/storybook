@@ -2,11 +2,13 @@ import { ReactElement } from "react";
 
 interface OptionStructure{
     label:string,
-    value:string
+    value:string,
+
 }
 interface SelectStructure{
     title:string,
-    value:string
+    value:string,
+    index:string
 }
 
 export interface IAccordionProps {
@@ -14,6 +16,7 @@ export interface IAccordionProps {
     multi: boolean;
     children?: ReactElement;
     options?:OptionStructure[]
-    onChange?:any
+    onChange?:(element)=>void
+    index:number,
     selectData?:SelectStructure[]
 }
