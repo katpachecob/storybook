@@ -10,7 +10,7 @@ const filterMeta: Meta<typeof Filter> = {
   component: Filter
 };
 
-type Story = StoryObj<typeof Filter>;
+type Story = StoryObj<typeof Filter>
 const ModalComponent = (args: ISelectProps) => {
 
   return (
