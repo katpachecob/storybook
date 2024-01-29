@@ -8,7 +8,7 @@ import { FakeData } from "../../utils/data";
 import ResetIcon from "../../assets/ResetIcon";
 import { handleFilterSelect } from "../../services/filterService/handleFilter";
 
-const Filter = ({data = FakeData, filter_title='Filter data by'}) => {
+const Filter = ({data = FakeData, filter_title='Filter data by', modal_title='Filter'}) => {
     const { toggle, isOpen } = useDisclosure(false)
     const [filterSelected, setFilterSelected] = useState([])
 
@@ -25,7 +25,7 @@ const Filter = ({data = FakeData, filter_title='Filter data by'}) => {
     return (
         <GeneralLayout>
             <div >
-                <Modal title="Filter" onClick={(element) => handleDelete(element)} filters={filterSelected} icon={<FilterIcon fill={isOpen ? '#fff' : '#1967FF'} />} isOpen={isOpen} onClose={toggle} >
+                <Modal title={modal_title} onClick={(element) => handleDelete(element)} filters={filterSelected} icon={<FilterIcon fill={isOpen ? '#fff' : '#1967FF'} />} isOpen={isOpen} onClose={toggle} >
                     <div className="bg-neutral_gray w-[100%]  p-5 my-2 rounded-lg backdrop-blur-md">
                         <div className="flex flex-row mb-4 justify-between items-center">
                             <p className='text-white  text-lg'>{filter_title}</p>

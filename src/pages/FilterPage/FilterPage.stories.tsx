@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Filter from './FilterPage';
 import { ISelectProps } from '../../interface/ISelectProps';
 import { FakeData } from '../../utils/data';
-import { object } from 'prop-types';
 
 const filterMeta: Meta<typeof Filter> = {
   title: 'Components/Filter',
@@ -26,6 +25,7 @@ export const FilterElement = ModalComponent.bind({});
 
 FilterElement.args = {
   filter_title: "Filter data by",
+  modal_title: "Filter data by",
   data: [
     ...FakeData
   ],
